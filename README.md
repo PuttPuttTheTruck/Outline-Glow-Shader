@@ -11,7 +11,8 @@
 
 ## Usage Instructions:
 
-1. When you want to use the shader, first call "scr_initialise_outline_shader".
+1. On any sprite you plan to use your shader on, you must go to the sprite, expand the texture settings option, and tick "Seperate Texture Page". 
+2. When you want to use the shader, first call "scr_initialise_outline_shader".
    The first two parameters are required, the rest are optional for tweaking the effect depending on your sprite.
-2. Next draw your sprite.
-3. After all drawing is done, be sure to call "shader_reset()".
+3. Next draw your sprite.
+4. After all drawing is done, be sure to call "shader_reset()".
