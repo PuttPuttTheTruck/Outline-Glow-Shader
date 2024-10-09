@@ -28,8 +28,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"Sprites",
-    "path":"folders/Sprites.yy",
+    "name":"Shader Demo Sprites",
+    "path":"folders/Sprites/Shader Demo Sprites.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
