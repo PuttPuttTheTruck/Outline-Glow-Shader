@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"scr_initialise_outline_shader",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_initialise_outline_shader",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
