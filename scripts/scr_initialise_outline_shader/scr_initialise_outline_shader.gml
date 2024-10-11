@@ -7,7 +7,7 @@
 //Call "shader_reset()"
 
 function scr_initialise_outline_shader(_sprite_to_draw, _index_of_sprite_to_draw, 
-_time_variable, _length_of_wave, _sprite_brighten_multiplier, _glow_size, _glow_intensity_divisor) {
+_time_variable, _length_of_wave, _sprite_brighten_multiplier, _glow_size, _glow_intensity_divisor, _glow_colour_red, _glow_colour_green, _glow_colour_blue) {
 	
 	#region //Retrieve all uniforms.
 	u_pixel_h = shader_get_uniform(sh_outline, "pixelH");
@@ -18,6 +18,10 @@ _time_variable, _length_of_wave, _sprite_brighten_multiplier, _glow_size, _glow_
 	u_wave_time_offset_custom = shader_get_uniform(sh_outline, "wave_time_offset_custom");
 	u_glow_size_custom = shader_get_uniform(sh_outline, "glow_size_custom");
 	u_glow_intensity_exponent_divisor_custom = shader_get_uniform(sh_outline, "glow_intensity_exponent_divisor_custom");
+	u_glow_colour_red_custom = shader_get_uniform(sh_outline, "glow_colour_red_custom");
+	u_glow_colour_green_custom = shader_get_uniform(sh_outline, "glow_colour_green_custom");
+	u_glow_colour_blue_custom = shader_get_uniform(sh_outline, "glow_colour_blue_custom");
+
 	#endregion
 	
 	#region //Set all undefined to zero.
@@ -27,6 +31,10 @@ _time_variable, _length_of_wave, _sprite_brighten_multiplier, _glow_size, _glow_
 	if is_undefined(_sprite_brighten_multiplier) _sprite_brighten_multiplier = 0;
 	if is_undefined(_glow_size) _glow_size = 0;
 	if is_undefined(_glow_intensity_divisor) _glow_intensity_divisor = 0;
+	if is_undefined(_glow_colour_red) _glow_colour_red = 255;
+	if is_undefined(_glow_colour_green) _glow_colour_green = 255;
+	if is_undefined(_glow_colour_blue) _glow_colour_blue = 255;
+
 	#endregion
 	
 	shader_set(sh_outline);
@@ -44,5 +52,8 @@ _time_variable, _length_of_wave, _sprite_brighten_multiplier, _glow_size, _glow_
 	shader_set_uniform_f(u_wave_time_offset_custom, _length_of_wave*texel_h);
 	shader_set_uniform_i(u_glow_size_custom, _glow_size);
 	shader_set_uniform_f(u_glow_intensity_exponent_divisor_custom, _glow_intensity_divisor);
+	shader_set_uniform_f(u_glow_colour_red_custom, _glow_colour_red);
+	shader_set_uniform_f(u_glow_colour_green_custom, _glow_colour_green);
+	shader_set_uniform_f(u_glow_colour_blue_custom, _glow_colour_blue);
 	#endregion
 }

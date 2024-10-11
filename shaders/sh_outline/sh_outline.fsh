@@ -13,6 +13,11 @@ uniform float sprite_brighten_multiplier_custom;
 uniform float wave_time_offset_custom; //FORMULA (Inside of initialiastion script): (Wave Length)*(PixelH)
 uniform int glow_size_custom;
 uniform float glow_intensity_exponent_divisor_custom;
+uniform float glow_colour_red_custom;
+uniform float glow_colour_green_custom;
+uniform float glow_colour_blue_custom;
+
+
 
 void main() {
 	#region //Initialise vectors for checking pixel positions.
@@ -45,6 +50,22 @@ void main() {
 	
 	float sprite_brighten_multiplier = 0.5;
 	if (sprite_brighten_multiplier_custom != 0.0) {sprite_brighten_multiplier = sprite_brighten_multiplier_custom;} 
+	
+	vec3 glow_colour;
+	glow_colour.x = 1.0;
+	glow_colour.y = 1.0;
+	glow_colour.z = 1.0;
+
+	
+	
+	
+	if (glow_colour_red_custom != 255.0 || glow_colour_green_custom != 255.0 || glow_colour_blue_custom != 255.0) {
+		glow_colour.x = glow_colour_red_custom/255.0;
+		glow_colour.y = glow_colour_green_custom/255.0;
+		glow_colour.z = glow_colour_blue_custom/255.0;
+		
+	}
+	
 	#endregion
 	
 	#region //Calculate outline.
@@ -75,12 +96,12 @@ void main() {
 	
 	#region //Brighten the area of the sprite within the wave. (Not outline.)
     gl_FragColor = v_vColour * texture2D(gm_BaseTexture, v_vTexcoord);
-	gl_FragColor.rgb += within_wave_amount * sprite_brighten_multiplier;
+	gl_FragColor.rgb += within_wave_amount * sprite_brighten_multiplier * glow_colour;
 	#endregion
 	
 	#region //Draw outline and surrounding glow.
 	if (gl_FragColor.a == 0.0 && outline_alpha > 0.0) {
-		gl_FragColor.rgb = vec3(1.0, 1.0, 1.0);
+		gl_FragColor.rgb = glow_colour;
 		gl_FragColor.a = within_wave_amount * outline_alpha;
 	}
 	#endregion
